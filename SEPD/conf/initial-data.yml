@@ -1,0 +1,20 @@
+- !!models.Game
+    id:        1
+    waitingPairs: 2
+- !!models.Player
+    name:      joao
+    password:  j    
+    npc:       false
+- !!models.Player
+    name:      miguel
+    password:  m
+    npc:       true
+- !!models.Player
+    name:      sofia
+    password:  s
+    npc:       true
+- !!models.Player
+    name:      ines
+    password:  i    
+    npc:       true
+    

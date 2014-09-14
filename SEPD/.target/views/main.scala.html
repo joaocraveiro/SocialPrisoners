@@ -1,0 +1,35 @@
+@(player: Player)(content: Html)
+
+@import helper.twitterBootstrap._
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Social Prisoners</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">        
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript"></script>        
+    </head>
+    <body>
+    
+    	<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>           
+          <a class="brand" href="#">Social Prisoners</a>          
+          <a class="btn btn-primary pull-right" href="@routes.Application.logout()">Logout</a></li>
+         
+        </div>
+      </div>
+    </div>
+    
+        @content
+    </body>
+</html>
