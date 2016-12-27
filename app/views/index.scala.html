@@ -1,0 +1,95 @@
+@(player: Player, matchup: Matchup, game: Game, players: List[Player])
+
+@main(player) {
+
+<div class="container">
+             
+    <div class="well text-center"
+    <p><h4>@player.name</h4></p>
+    @player.getEconomicScore() points
+    </div>
+    </br>
+    
+    <div class="round">  
+    <h3><p>Round <b>@game.round</b></p></h3>
+    <p>Opponent: @if(player.name.equals(matchup.player1.name)){ @matchup.player2.name } else { @matchup.player1.name } </p>
+    
+    </br>
+    
+    <h5><p>Economic Choice:</p></h5>
+    @if((player.name.equals(matchup.player1.name) && matchup.p1choice1 == 0) || (player.name.equals(matchup.player2.name) && matchup.p2choice1 == 0)){
+    	<a class="btn btn-medium btn-primary" href="@routes.Choices.defect1()">Defect</a>
+    	<a class="btn btn-medium btn-primary" href="@routes.Choices.coop1()">Cooperate</a></p>
+    } else { 
+    	@if(player.name.equals(matchup.player1.name)){
+    		@if(matchup.p1choice1 == 1){ <blockquote>You cooperated!</blockquote> }
+    		@if(matchup.p1choice1 == -1){ <blockquote>You defected!</blockquote> }
+    	} else { 
+    		@if(matchup.p2choice1 == 1){ <blockquote>You cooperated!</blockquote> }
+    		@if(matchup.p2choice1 == -1){ <blockquote>You defected!</blockquote> }
+    	}
+    	@if(matchup.p1choice1 == 0 || matchup.p2choice1 == 0){ <p><b>Waiting for the opponent...</p></b>}
+    }
+        
+        
+    @if(matchup.p1choice1 != 0 && matchup.p2choice1 != 0){
+    	@if(player.name.equals(matchup.player1.name)){
+    		@if(matchup.p2choice1 == 1){ <blockquote>Your opponent cooperated!</blockquote> }
+    		@if(matchup.p2choice1 == -1){ <blockquote>Your opponent defected!</blockquote> }
+    	} else { 
+    		@if(matchup.p1choice1 == 1){ <blockquote>You opponent cooperated!</blockquote> }
+    		@if(matchup.p1choice1 == -1){ <blockquote>You opponent defected!</blockquote> }
+    	}
+    	</br>
+    	<h5><p>Social Choice:</p></h5>
+    	@if((player.name.equals(matchup.player1.name) && matchup.p1choice2 == 0) || (player.name.equals(matchup.player2.name) && matchup.p2choice2 == 0)){
+    		<a class="btn btn-medium btn-primary" href="@routes.Choices.defect2()">Defect</a>
+    		<a class="btn btn-medium btn-primary" href="@routes.Choices.coop2()">Cooperate</a></p>
+    	} else { 
+    		@if(player.name.equals(matchup.player1.name)){
+    			@if(matchup.p1choice2 == 1){ <blockquote>You cooperated!</blockquote> }
+    			@if(matchup.p1choice2 == -1){ <blockquote>You defected!</blockquote> }
+    		} else { 
+    			@if(matchup.p2choice2 == 1){ <blockquote>You cooperated!</blockquote> }
+    			@if(matchup.p2choice2 == -1){ <blockquote>You defected!</blockquote> }
+    		}
+    		@if(matchup.p1choice2 == 0 || matchup.p2choice2 == 0){ <p><b>Waiting for the opponent...</p></b> } else { <p><b>Waiting for other matchups...</p></b> }
+    	}
+    }
+    </div>
+        	  	  	  	     
+        
+    <div class="well pull-right">
+    <h4><p>Social Ranking:</p></h4>    
+    <div class="table-responsive">
+    	<table class="table table-striped">
+ 			<thead>
+  				<tr>
+  	  				<th>#</th>
+    				<th>Player</th>	
+   				</tr>
+   			</thead>
+   			<tbody>
+    		@for((person,index) <- players.zipWithIndex) {
+    			<tr>
+    				<td>@(index+1)</td>
+    				<td>@person.name</td>
+    			</tr>
+    		}
+    		</tbody>
+    	</table>        
+    </div>
+    </div>  
+    </div>
+      
+      
+      <div class="navbar navbar-inverse navbar-fixed-bottom">      
+      <div class="navbar-inner">      
+      <div class="container">   
+      <div class="text-center">   
+        SocialPrisoners © 2014      
+      </div>
+      </div>
+      </div>
+      </div>
+}
